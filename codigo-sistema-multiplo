@@ -1,0 +1,30 @@
+class ContaBancaria:
+    def __init__(self, titular, saldo):
+        self.titular = titular
+        self.saldo = saldo
+
+class SistemaBancario:
+    def __init__(self):
+        self.contas = []
+
+    def criar_conta(self, titular, saldo):
+        conta = ContaBancaria(titular, saldo)
+        self.contas.append(conta)
+
+    def listar_contas(self):
+        resultado = []
+        for conta in self.contas:
+            resultado.append(f"{conta.titular}: R$ {conta.saldo}")
+        print(", ".join(resultado))
+
+# Crie uma instância de SistemaBancario
+sistema = SistemaBancario()
+
+while True:
+    entrada = input().strip()
+    if entrada.upper() == "FIM":
+        break
+    titular, saldo = entrada.split(", ")
+    sistema.criar_conta(titular, int(saldo))
+
+sistema.listar_contas()
